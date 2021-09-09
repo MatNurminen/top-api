@@ -3,10 +3,10 @@ import { CountryDTO } from './country.dto';
 import { CountryService } from './country.service';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('country')
+@ApiTags('Country')
 @Controller('country')
 export class CountryController {
-    constructor(private serv: CountryService) {}
+    constructor(private readonly serv: CountryService) {}
 
     @Get()
     public async findAllCountries(): Promise<CountryDTO[]> {

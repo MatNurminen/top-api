@@ -9,9 +9,13 @@ async function bootstrap() {
     .setTitle('Hockey REST API')
     .setDescription('The hockey API description')
     .setVersion('1.0')
-    .addTag('club')
-    .addTag('country')
-    .addTag('league')
+    .addTag('Champ')
+    .addTag('Championship')
+    .addTag('Club')
+    .addTag('ClubLogo')
+    .addTag('Country')
+    .addTag('League')
+    .addTag('LeagueLogo')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

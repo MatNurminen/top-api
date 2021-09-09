@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Param } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { LeagueDTO } from './league.dto';
@@ -19,7 +19,7 @@ export class LeagueService {
     public async findLeagueById(league_id: number) {
         const league = await this.repo.findOne(league_id)
         if (!league) {
-            throw new NotFoundException(`Country #${league_id} not found`)
+            throw new NotFoundException(`League #${league_id} not found`)
         }
         return league
     }
@@ -29,4 +29,12 @@ export class LeagueService {
           .save(LeagueDTO.toEntity(dto))
           .then((e) => LeagueDTO.fromEntity(e))
       }
+
+      public async delete(@Param('league_id') league_id: number): Promise<void> {
+        const league = await this.repo.findOne(league_id)
+        if (!league) {
+            throw new NotFoundException(`League #${league_id} not found`)
+        }
+        this.repo.delete({league_id})
+      }  
 }

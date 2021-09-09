@@ -1,9 +1,9 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { LeagueDTO } from './league.dto';
 import { LeagueService } from './league.service';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('league')
+@ApiTags('League')
 @Controller('league')
 export class LeagueController {
     constructor(private serv: LeagueService) {}
@@ -21,5 +21,15 @@ export class LeagueController {
     @Post()
     public async post(@Body() dto: LeagueDTO): Promise<LeagueDTO> {
       return this.serv.create(dto)
+    }
+
+    @Patch(':league_id')
+    public async update(@Param('league_id') league_id: number, @Body() dto: LeagueDTO) {
+      return `This action updates #${league_id} league`
+    }
+
+    @Delete(':league_id')
+    public async remove(@Param('league_id') league_id: number): Promise<void> {
+      this.serv.delete(league_id);
     }
 }

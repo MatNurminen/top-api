@@ -35,7 +35,7 @@ export class ClubDTO implements Readonly<ClubDTO> {
 
       public static fromEntity(entity: ClubEntity) {
         return this.from({
-            club_id: entity.league_id,
+            club_id: entity.club_id,
             league_id: entity.league_id,
             club: entity.club,
             start_year: entity.start_year,

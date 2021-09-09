@@ -30,12 +30,11 @@ export class CountryService {
           .then((e) => CountryDTO.fromEntity(e))
       }
       
-    public async delete(@Param('conuntry_id') country_id: number): Promise<string> {
+    public async delete(@Param('conuntry_id') country_id: number): Promise<void> {
         const country = await this.repo.findOne(country_id)
         if (!country) {
             throw new NotFoundException(`Country #${country_id} not found`)
         }
         this.repo.delete({country_id})
-        return 'TEST!'
       }
 }
