@@ -12,6 +12,8 @@ import { ChampionshipModule } from './championship/championship.module';
 import { ClubLogoModule } from './club-logo/club-logo.module';
 import { LeagueLogoModule } from './league-logo/league-logo.module';
 import { PlayerModule } from './player/player.module';
+import { SeasonModule } from './season/season.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -34,7 +36,9 @@ import { PlayerModule } from './player/player.module';
     ChampionshipModule,
     ClubLogoModule,
     LeagueLogoModule,
-    PlayerModule
+    PlayerModule,
+    SeasonModule,
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -16,6 +16,8 @@ async function bootstrap() {
     .addTag('Country')
     .addTag('League')
     .addTag('LeagueLogo')
+    .addTag('Player')
+    .addTag('Season')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
