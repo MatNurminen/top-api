@@ -1,9 +1,7 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { CountryEntity } from '../country/country.entity';
-import { ChampionshipEntity } from '../championship/championship.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('player')
-export class PlayerEntity {
+@Entity()
+export class FreeAgentEntity {
     @PrimaryGeneratedColumn()
     player_id: number;
 
@@ -42,13 +40,4 @@ export class PlayerEntity {
 
     @Column({ nullable: true })
     end_year: number;
-
-    // @OneToMany(() => ChampionshipEntity, (championship) => championship.player_id)
-    // championships: ChampionshipEntity[];
-    @OneToMany(type => ChampionshipEntity, championship => championship.player)
-    championships: ChampionshipEntity[];
-
-    @ManyToOne(type => CountryEntity, country => country.players)
-    @JoinColumn([{ name: 'country_id' }])
-    country: CountryEntity;
 }

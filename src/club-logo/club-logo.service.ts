@@ -16,15 +16,21 @@ export class ClubLogoService {
         .then((clubLogos)=>clubLogos.map((e)=>ClubLogoDTO.fromEntity(e)))
     }
 
-    // public async findClubLogoByClub(club_id: number): Promise<ClubLogoDTO[]> {
-    //     return await this.repo.findByIds(club_id)
-    //     .then((clubLogosByClub)=>clubLogosByClub.map((e)=>ClubLogoDTO.fromEntity(e)))
-    //     const clubLogo = await this.repo.findOne(club_id)
-    //     if (!clubLogo) {
-    //         throw new NotFoundException(`Club #${club_id} not found`)
-    //     }
-    //     return club
-    // }
+    public async findClubLogoByClub(club_id: number): Promise<ClubLogoDTO[]> {
+        //const clubs = await this.repo.find()
+        //return clubs.filter(club=>club.club_id === Number(club_id))
+        const findLogos = await this.repo.createQueryBuilder('club_logo')
+        .where('club_logo.club_id = :club_id', {club_id})
+        .getMany()
+        return findLogos
+    }
+
+    public async findClubLogoByQuery(query: any): Promise<ClubLogoDTO[]> {
+        const clubs = await this.repo.find()
+        
+        return clubs.filter(club=>club.club_id === Number(query.club_id) && 
+        club.start_year === Number(query.start_year))
+    }
 
     public async create(dto: ClubLogoDTO): Promise<ClubLogoDTO> {
         return this.repo

@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { PlayerEntity } from '../player/player.entity';
+import { ClubEntity } from '../club/club.entity';
 
 @Entity('championship')
 export class ChampionshipEntity {
@@ -8,7 +10,7 @@ export class ChampionshipEntity {
     @Column()
     season: number;
 
-    @Column()
+    @Column({ nullable: true })
     player_id: number;
 
     @Column()
@@ -20,4 +22,11 @@ export class ChampionshipEntity {
     @Column({ nullable: true })
     goals: number;
 
+     @ManyToOne(type => PlayerEntity, player => player.championships)
+     @JoinColumn({ name: 'player_id' })
+     player: PlayerEntity;
+
+     @ManyToOne(type => ClubEntity, club => club.championships)
+     @JoinColumn({ name: 'club_id' })
+     club: ClubEntity;
 }

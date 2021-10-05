@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { PlayerEntity } from '../player/player.entity';
 
 @Entity('country')
 export class CountryEntity {
@@ -16,4 +17,7 @@ export class CountryEntity {
     
     @Column()
     jersey: string;
+
+    @OneToMany(() => PlayerEntity, player => player.country_id)
+    players: PlayerEntity[]
 }

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { LeagueEntity } from '../league/league.entity';
 
 @Entity('league_logo')
 export class LeagueLogoEntity {
@@ -16,4 +17,8 @@ export class LeagueLogoEntity {
 
     @Column()
     logo: string;
+
+    @ManyToOne(type => LeagueEntity, league => league.logos)
+    @JoinColumn([{ name: 'league_id' }])
+    league: LeagueEntity;
 }

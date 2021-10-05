@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { ClubEntity } from '../club/club.entity';
 
 @Entity('club_logo')
 export class ClubLogoEntity {
@@ -16,4 +17,8 @@ export class ClubLogoEntity {
 
     @Column({ nullable: true })
     end_year: number;
+
+    @ManyToOne(type => ClubEntity, club => club.logos)
+    @JoinColumn([{ name: 'club_id' }])
+    club: ClubEntity;
 }

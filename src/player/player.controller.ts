@@ -24,8 +24,8 @@ export class PlayerController {
     }
 
     @Patch(':player_id')
-    public async update(@Param('player_id') player_id: number, @Body() dto: PlayerDTO) {
-      return `This action updates #${player_id} player`
+    public async update(@Param('player_id') player_id: number, @Body() dto:PlayerDTO): Promise<PlayerDTO> {
+      return this.serv.update(player_id, dto)
     }
 
     @Delete(':player_id')
