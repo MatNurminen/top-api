@@ -1,4 +1,4 @@
-    import { Injectable, NotFoundException, Param, Query } from '@nestjs/common';
+import { Injectable, NotFoundException, Param, Query } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Brackets, IsNull, Repository } from 'typeorm';
 import { PlayerDTO } from '../player/player.dto';

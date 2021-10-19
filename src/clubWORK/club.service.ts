@@ -1,9 +1,8 @@
-import { HttpStatus, Injectable, NotFoundException, Param } from '@nestjs/common';
+import { Injectable, NotFoundException, Param } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
-import { ClubDTO } from './dto/club.dto';
+import { ClubDTO } from './club.dto';
 import { ClubEntity } from './club.entity';
-//import { CreateClubDTO } from './dto/create-club.dto';
 
 @Injectable()
 export class ClubService {
@@ -37,13 +36,11 @@ export class ClubService {
           .then((e: any) => ClubDTO.fromEntity(e))
       }
       
-    public async delete(@Param('club_id') club_id: number): Promise<ClubDTO> {
+    public async delete(@Param('club_id') club_id: number): Promise<void> {
         const club = await this.repo.findOne(club_id)
         if (!club) {
             throw new NotFoundException(`Club #${club_id} not found`)
         }
-        
         this.repo.delete({club_id})
-        return club
       }
 }

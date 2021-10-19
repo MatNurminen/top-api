@@ -1,17 +1,39 @@
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ClubController } from './club/club.controller'
-import { ClubService } from './club/club.service'
-import { ClubEntity } from './club/club.entity';
-import { ClubModule } from './club/club.module'
+
+describe('AppController', () => {
+  let app: TestingModule;
+
+  beforeAll(async () => {
+    app = await Test.createTestingModule({
+      controllers: [AppController],
+      providers: [AppService],
+    }).compile();
+  });
+
+  describe('getHello', () => {
+    it('should return "Hello World!"', () => {
+      const appController = app.get<AppController>(AppController);
+      expect(appController.getHello()).toBe('Hello World!');
+    });
+  });
+});
+
+/* import { TypeOrmModule } from '@nestjs/typeorm';
+import { Test, TestingModule } from '@nestjs/testing';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+// import { ClubController } from './club/club.controller'
+// import { ClubService } from './club/club.service'
+// import { ClubEntity } from './club/club.entity';
+// import { ClubModule } from './club/club.module'
 
 
 
 describe('AppController', () => {
   let appController: AppController;
-  let clubController: ClubController;
+  //let clubController: ClubController;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
@@ -63,4 +85,4 @@ describe('AppController', () => {
 //       expect(typeof clubController.findAllClubs()).toBe('object');
 //     });
 //   });
-// })
+// }) */

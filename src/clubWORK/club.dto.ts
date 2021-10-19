@@ -1,10 +1,11 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsInt, IsString, IsUUID } from 'class-validator';
+import { IsInt, IsOptional, IsString, IsUUID } from 'class-validator';
 import { ClubEntity } from './club.entity';
 
 export class ClubDTO implements Readonly<ClubDTO> {
     @ApiProperty({ required: true })
-    @IsUUID()
+    //@IsUUID()
+    @IsInt()
     club_id: number
 
     @ApiProperty({ required: true })
@@ -45,8 +46,10 @@ export class ClubDTO implements Readonly<ClubDTO> {
 
     public static toEntity(dto: Partial<ClubDTO>) {
         const club = new ClubEntity()
-        club.club_id = dto.club_id
-        club.league_id = dto.league_id
+        //club.club_id = dto.club_id
+        if(dto.league_id) {
+          club.league_id = dto.league_id  
+        }
         club.club = dto.club
         club.start_year = dto.start_year
         club.end_year = dto.end_year
