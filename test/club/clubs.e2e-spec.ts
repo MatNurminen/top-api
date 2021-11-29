@@ -6,7 +6,7 @@ import { ClubModule } from '../../src/club/club.module'
 import { ClubDTO } from '../../src/club/dto/club.dto'
 import * as request from 'supertest'
 import * as faker from 'faker'
-import { ClubService } from '../../src/club/club.service'
+//import { ClubService } from '../../src/club/club.service'
 
 const club = {
     league_id: 1,
@@ -50,9 +50,7 @@ describe('[Feature] Clubs - /clubs', () => {
             .then((res) => {
                 expect(typeof res.body).toBe('object')
                 expect(res.status).toBe(200)
-                expect(typeof res.body[0]['club']).toBe('string')
-                //console.log(ClubDTO);
-                
+                expect(typeof res.body[0]['club']).toBe('string') 
             }) 
     })
     it('Get club by id [GET /:club_id]', async () => {
@@ -68,7 +66,6 @@ describe('[Feature] Clubs - /clubs', () => {
         const mockData = { "club": faker.address.city() }
 
         return request(app.getHttpServer())
-            //.get('/club' + test_club_id)
             .patch('/club/' + test_club_id)
             .send(mockData)
             .then((res) => {

@@ -1,6 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsInt, IsString, IsUUID } from 'class-validator';
-import { FreeAgentEntity } from './freeagent.entity';
 
 export class FreeAgentDTO implements Readonly<FreeAgentDTO> {
     @ApiProperty({ required: true })
@@ -55,7 +54,7 @@ export class FreeAgentDTO implements Readonly<FreeAgentDTO> {
     @IsInt()
     end_year: number
 
-    public static from(dto: Partial<FreeAgentDTO>) {
+    /* public static from(dto: Partial<FreeAgentDTO>) {
         const player = new FreeAgentDTO()
         player.player_id = dto.player_id
         player.first_name = dto.first_name
@@ -107,5 +106,5 @@ export class FreeAgentDTO implements Readonly<FreeAgentDTO> {
         player.start_year = dto.start_year
         player.end_year = dto.end_year
         return player
-      }
+      } */
 }

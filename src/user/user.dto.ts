@@ -23,10 +23,6 @@ export class UserDTO implements Readonly<UserDTO> {
     @IsDate()
     token_exp: Date
 
-    @ApiPropertyOptional()
-    @IsInt()
-    role_id: number
-
     public static from(dto: Partial<UserDTO>) {
         const user = new UserDTO()
         user.user_id = dto.user_id
@@ -34,7 +30,7 @@ export class UserDTO implements Readonly<UserDTO> {
         user.password = dto.password
         user.token = dto.token
         user.token_exp = dto.token_exp
-        user.role_id = dto.role_id
+        
         return user
       }
 
@@ -44,8 +40,7 @@ export class UserDTO implements Readonly<UserDTO> {
             login: entity.login,
             password: entity.password,
             token: entity.token,
-            token_exp: entity.token_exp,
-            role_id: entity.role_id
+            token_exp: entity.token_exp
         })
     }
 
@@ -56,7 +51,7 @@ export class UserDTO implements Readonly<UserDTO> {
         user.password = dto.password
         user.token = dto.token
         user.token_exp = dto.token_exp
-        user.role_id = dto.role_id
+      
         return user
       }
 }

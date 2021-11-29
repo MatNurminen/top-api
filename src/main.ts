@@ -15,15 +15,24 @@ async function bootstrap() {
     .addTag('Club')
     .addTag('ClubLogo')
     .addTag('Country')
+    .addTag('FreeAgent')
     .addTag('League')
     .addTag('LeagueLogo')
     .addTag('Player')
+    .addTag('Roster')
     .addTag('Season')
     .addTag('User')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
   
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+    res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,PUT,PATCH,UPDATE')
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Accept')
+    next()
+  })
+
   await app.listen(3002);
 }
 bootstrap();

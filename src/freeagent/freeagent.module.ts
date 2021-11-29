@@ -1,14 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FreeAgentController } from './freeagent.controller';
-import { PlayerEntity } from '../player/player.entity';
 import { FreeAgentService } from './freeagent.service';
-import { ChampionshipEntity } from '../championship/championship.entity';
+import { FreeAgentEntity } from './freeagent.entity';
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([PlayerEntity]),
-        TypeOrmModule.forFeature([ChampionshipEntity])
+        TypeOrmModule.forFeature([FreeAgentEntity])
     ],
     controllers: [FreeAgentController],
     providers: [FreeAgentService]

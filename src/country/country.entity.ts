@@ -14,7 +14,7 @@ export class CountryEntity {
     
     @Column()
     flag: string;
-    
+
     @Column()
     jersey: string;
 

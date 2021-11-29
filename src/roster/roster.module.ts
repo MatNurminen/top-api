@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PlayerEntity } from '../player/player.entity';
+import { RosterEntity } from './roster.entity';
 import { RosterController } from './roster.controller';
 import { RosterService } from './roster.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([PlayerEntity])
+    TypeOrmModule.forFeature([RosterEntity])
   ],
   controllers: [RosterController],
   providers: [RosterService]

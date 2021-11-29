@@ -26,6 +26,15 @@ export class CountryController {
         return await this.serv.findCountryById(country_id)
     }
 
+    @Get(':season/:league_id')
+    @ApiOperation({ summary: 'Get country by season and league' })
+    @ApiResponse({ status: 200, 
+      description: 'Get country by season and league', 
+      type: CountryDTO})
+    public async sqlCountryByLeague(@Param('season') season: number, @Param('league_id') league_id: number): Promise<any> {
+        return await this.serv.sqlCountryByLeague(season, league_id)
+    }
+
     @Post()
     @ApiOperation({ summary: 'Create country' })
     @ApiResponse({ status: 201, 

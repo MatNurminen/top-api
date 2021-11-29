@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-import { PlayerDTO } from 'src/player/player.dto';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { RosterDTO } from './roster.dto';
 import { RosterService } from './roster.service';
 
 @ApiTags('Roster')
@@ -9,7 +9,13 @@ export class RosterController {
     constructor(private serv: RosterService) {}
 
     @Get()
-    public async findRoster(@Query() query: any): Promise<PlayerDTO[]> {
+    @ApiOperation({ summary: 'Get roster by league and season' })
+    @ApiResponse({ status: 200, 
+      description: 'Get roster by league and season', 
+      type: [RosterDTO]})
+    @ApiQuery({ name: 'season', type: 'number' })
+    @ApiQuery({ name: 'league_id', type: 'number' })
+    public async findRoster(@Query() query: any): Promise<RosterDTO[]> {
         return await this.serv.findRoster(query)
     }
 }

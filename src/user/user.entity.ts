@@ -17,6 +17,4 @@ export class UserEntity {
     @Column({ nullable: true })
     token_exp: Date;
 
-    @Column({ nullable: true })
-    role_id: number;
 }

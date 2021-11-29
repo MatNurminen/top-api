@@ -1,0 +1,19 @@
+{
+  "type": "postgres",
+  "host": "192.168.10.23",
+  "port": 5432,
+  "username": "user",
+  "password": "user",
+  "database": "hock_migr",
+  "entities": [
+    "**/*.entity{.ts,.js}"
+  ],
+  "migrationsTableName": "migration",
+  "migrations": [
+    "src/migration/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "src/migration"
+  },
+  "ssl": false
+}

@@ -1,5 +1,5 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsUUID } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsNumber, IsString, IsUUID } from 'class-validator';
 import { CountryEntity } from './country.entity';
 
 export class CountryDTO implements Readonly<CountryDTO> {
@@ -23,6 +23,10 @@ export class CountryDTO implements Readonly<CountryDTO> {
     @IsString()
     jersey: string;
 
+    @ApiPropertyOptional()
+    @IsNumber()
+    plsOfDb: number;
+
     public static from(dto: Partial<CountryDTO>) {
         const country = new CountryDTO()
         country.country_id = dto.country_id
@@ -30,6 +34,7 @@ export class CountryDTO implements Readonly<CountryDTO> {
         country.s_name = dto.s_name
         country.flag = dto.flag
         country.jersey = dto.jersey
+        country.plsOfDb = dto.plsOfDb
         return country
       }
 
